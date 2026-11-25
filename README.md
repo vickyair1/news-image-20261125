@@ -1,28 +1,33 @@
-# The World in One Image — Wednesday 25 November 2026
+# news-image-20261125 — round 2
 
 [![make.fun · news-image-20261125](https://make.fun/badge/news-image-20261125.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
-[![rank](https://make.fun/badge/news-image-20261125/vickyair1/news-image-20261125/rank.svg)](https://make.fun/bounty/news-image-20261125/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
-[![reward](https://make.fun/badge/news-image-20261125/vickyair1/news-image-20261125/reward.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
+[![make.fun · rank](https://make.fun/badge/news-image-20261125/vickyair1/news-image-20261125/rank.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
+[![make.fun · reward](https://make.fun/badge/news-image-20261125/vickyair1/news-image-20261125/reward.svg)](https://make.fun/bounty/news-image-20261125?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261125)
 
-My entry for the [make.fun bounty "Sum up 25 November's world news in one image"](https://make.fun/bounty/news-image-20261125): one packed newspaper front page for Wednesday 25 November 2026.
+Sum up the world's news of **Wednesday 25 November 2026** in one image:
+a broadsheet front page, drawn entirely in code (PIL, no photos, no network).
 
-## What the page carries
+## The image
 
-35 stories from six regions, each dated WED or TUE so the day it sums up is unmistakable. The three leads are all genuinely from Wednesday: Washington preparing new tariffs on trading partners, a migrant boat capsizing off Senegal with dozens missing, and Moscow's own count putting Russian war dead at 490,334. Tuesday-evening stories carry their day in the text:
+- **Masthead:** Wednesday 25 November 2026, with the three leads in the standfirst.
+- **Numbers strip:** 1st Pakistani in orbit · 10/12 Huawei counts · ~490,000 Russian war dead · 11 wounded at the PIF tower · 5–1 Real Madrid · −15% SoftBank.
+- **3 large illustrated leads:** Shenzhou-24 lifts off with Pakistan's first astronaut (00:18 UTC, docks at Tiangong 03:56 UTC) · Huawei guilty on 10 of 12 counts in Brooklyn · Russia's own leaked Rosstat data shows nearly 500,000 war dead.
+- **9 more illustrated panels:** PIF tower hit again · Cartagena hostages freed · Australia–Solomon Islands treaty · Chen Jining probed · Asia's AI stocks plunge · US tariffs on 16 economies · Hodeidah strikes · Zelenskyy claims the Sparta II drone hit · Real Madrid 5–1 PSV.
+- **World map** with numbered pins matching story numbers, plus a region tally.
+- **28 more briefs** (40 stories total), a UTC timeline strip, and a **DATE CHECK** box: every story happened, or was first reported, on Wednesday 25 November 2026; Tuesday-evening events are in as Wednesday's morning news, and stale stories (Senegal boat 19 Nov, Sparta II strike 21 Nov, COP31 failure 22 Nov, first PIF strike 19 Nov) are listed as left out.
+- Every story carries a per-story source tag (Reuters, AP, BBC, Xinhua, AFP, Bloomberg, Mediazona, Meduza, and more).
 
-- **3 leads** — the US tariff plan, the Senegal boat sinking, and the 490,334 toll.
-- **10 features** — the CIA and ODNI breach, Huawei's guilty verdict on 10 of 12 counts, the Houthi strike on Riyadh's tallest tower, Ukraine sinking a Russian warship off Libya, the WHO evacuation from the Ebola hospital in Congo, Trump meeting NATO chief Rutte, the Champions League results, England levelling the T20 series, the BJP–Akali Dal reunion, and NATO's early-warning deployment in Poland.
-- **22 one-line briefs** (14–35), a timeline strip from Tuesday evening to Wednesday morning, a numbers strip, a region count, and a KEPT OUT box listing the famous stories deliberately left off because they are not 25 November (the ICJ Myanmar ruling of 19 Nov, the COP31 no-deal close, Huang's return to Nvidia, the GTA 6 release).
+## Run it
 
-Every picture is a drawn illustration — no photographs, no generated images — so no text comes out garbled. The Champions League fixtures tonight are marked FORECAST. Wires as of about 02:15 UTC, Wednesday 25 November 2026.
+```sh
+python3 main.py   # writes /output/entry.png (1024x1024 PNG, < 1 MiB)
+```
 
-## Contents
+Deterministic: no network, no timestamps, no randomness — two runs write
+byte-identical output (verified, see SUBMISSION.md).
 
-- `draw_frontpage.py` — draws `entry.png` from the researched stories (Python 3, Pillow; deterministic, so two runs write the same bytes).
-- `entry.png` — the front page, a 1024×1024 PNG.
-- `main.ts` — the entrypoint: copies `entry.png` into the output directory (Node 22 standard library only).
-- `LICENSE` — MIT licence.
+## Files
 
-## How to run it
-
-First redraw the page with `python3 draw_frontpage.py`, then run the entrypoint with `MAKEFUN_OUTPUT_DIR=out node main.ts` and find the finished page at `out/entry.png`.
+- `main.py` — the whole entry: story data, 12 vector illustrations, map, layout.
+- `SUBMISSION.md` — story list with dates/sources, fixes vs round 1, checker result, determinism hashes, HEAD.
+- `LICENSE` — MIT.
